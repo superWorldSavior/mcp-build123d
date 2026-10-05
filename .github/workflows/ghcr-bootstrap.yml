@@ -1,0 +1,64 @@
+name: Bootstrap existing public GHCR image
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: Exact reviewed package name (for example mcp-chrono)
+        type: string
+        required: true
+      mode:
+        description: Plan, copy exact public digest, or verify anonymous access after visibility change
+        type: choice
+        required: true
+        default: plan
+        options:
+          - plan
+          - copy
+          - verify-public
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ghcr-bootstrap-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  bootstrap:
+    if: github.repository_owner == 'superWorldSavior'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Check out reviewed workflow revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, resolved 2026-10-05
+        with:
+          persist-credentials: false
+      - name: Install graph-preserving copy tool
+        if: inputs.mode == 'copy'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install --yes --no-install-recommends skopeo
+          skopeo --version
+      - name: Bootstrap or verify one allowlisted package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BOOTSTRAP_PACKAGE: ${{ inputs.package_name }}
+          BOOTSTRAP_MODE: ${{ inputs.mode }}
+        run: |
+          python3 scripts/ghcr_bootstrap.py \
+            --catalogue scripts/ghcr-bootstrap-catalogue.json \
+            --package "$BOOTSTRAP_PACKAGE" \
+            --mode "$BOOTSTRAP_MODE" \
+            --receipt ghcr-bootstrap-receipt.json
+      - name: Keep copy and verification receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4, resolved 2026-10-05
+        with:
+          name: ghcr-bootstrap-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ghcr-bootstrap-receipt.json
+          if-no-files-found: warn
+          retention-days: 30
