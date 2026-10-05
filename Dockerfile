@@ -7,7 +7,7 @@ ARG CREATED=unknown
 
 LABEL org.opencontainers.image.title="mcp-build123d" \
       org.opencontainers.image.description="Qualified Build123d MCP provider" \
-      org.opencontainers.image.source="https://github.com/Casys-AI/mcp-build123d" \
+      org.opencontainers.image.source="https://github.com/superWorldSavior/mcp-build123d" \
       org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.version="$VERSION" \
       org.opencontainers.image.revision="$VCS_REF" \

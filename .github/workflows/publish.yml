@@ -13,6 +13,9 @@ on:
 permissions:
   contents: read
 
+env:
+  REGISTRY_IMAGE: ghcr.io/superworldsavior/mcp-build123d
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -208,8 +211,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/casys-ai/mcp-build123d:${{ steps.release.outputs.version }}
-            ghcr.io/casys-ai/mcp-build123d:sha-${{ github.sha }}
+            ${{ env.REGISTRY_IMAGE }}:${{ steps.release.outputs.version }}
+            ${{ env.REGISTRY_IMAGE }}:sha-${{ github.sha }}
           build-args: |
             VERSION=${{ steps.release.outputs.version }}
             VCS_REF=${{ github.sha }}
