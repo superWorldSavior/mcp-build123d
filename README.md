@@ -1,7 +1,7 @@
 # @casys/mcp-build123d
 
 [![JSR](https://jsr.io/badges/@casys/mcp-build123d)](https://jsr.io/@casys/mcp-build123d)
-[![CI](https://github.com/Casys-AI/mcp-build123d/actions/workflows/publish.yml/badge.svg)](https://github.com/Casys-AI/mcp-build123d/actions/workflows/publish.yml)
+[![CI](https://github.com/superWorldSavior/mcp-build123d/actions/workflows/publish.yml/badge.svg)](https://github.com/superWorldSavior/mcp-build123d/actions/workflows/publish.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Turn a [build123d](https://github.com/gumyr/build123d) Python model into
@@ -123,7 +123,7 @@ containment. A virtual environment keeps the OCCT dependency isolated from the
 system Python:
 
 ```bash
-git clone https://github.com/Casys-AI/mcp-build123d.git
+git clone https://github.com/superWorldSavior/mcp-build123d.git
 cd mcp-build123d
 python3 -m venv .venv
 . .venv/bin/activate
@@ -235,14 +235,15 @@ container user's authority and can access anything mounted into it.
 
 ### Use with Casys
 
-[Casys Digital Thread](https://github.com/Casys-AI/casys-digital-thread) ships a
-desktop chat that prepares this provider itself: no manual Docker or image
-management. The proved flow (macOS, desktop `0.4.0`) opens a chat with Muse as
-the default agent, enables Build123d from the catalogue, produces a first Box
-geometry, edits it, and reopens the saved work:
-[first saved Build123d result](https://github.com/Casys-AI/casys-digital-thread/blob/main/docs/how-to/setup/first-build123d-result.md).
-That guide states the verified versions and the current limitations (Muse export
-viewers included).
+[Casys Digital Thread](https://github.com/superWorldSavior/casys-digital-thread)
+ships a desktop chat that prepares this provider itself: no manual Docker or
+image management. The proved flow (macOS, desktop `0.4.0`) opens a chat with
+Muse as the default agent, enables Build123d from the catalogue, produces a
+first Box geometry, edits it, and reopens the saved work.
+
+See the
+[Build123d provider reference](https://github.com/superWorldSavior/casys-digital-thread/blob/main/docs/reference/providers/build123d/README.md)
+for the provider contract and integration boundaries.
 
 ## Security and trust boundary
 
