@@ -235,13 +235,14 @@ container user's authority and can access anything mounted into it.
 
 ### Use with Casys
 
-[Casys Digital Thread](https://github.com/superWorldSavior/casys-digital-thread) ships a
-desktop chat that prepares this provider itself: no manual Docker or image
-management. The proved flow (macOS, desktop `0.4.0`) opens a chat with Muse as
-the default agent, enables Build123d from the catalogue, produces a first Box
-geometry, edits it, and reopens the saved work.
+[Casys Digital Thread](https://github.com/superWorldSavior/casys-digital-thread)
+ships a desktop chat that prepares this provider itself: no manual Docker or
+image management. The proved flow (macOS, desktop `0.4.0`) opens a chat with
+Muse as the default agent, enables Build123d from the catalogue, produces a
+first Box geometry, edits it, and reopens the saved work.
 
-See the [Build123d provider reference](https://github.com/superWorldSavior/casys-digital-thread/blob/main/docs/reference/providers/build123d/README.md)
+See the
+[Build123d provider reference](https://github.com/superWorldSavior/casys-digital-thread/blob/main/docs/reference/providers/build123d/README.md)
 for the provider contract and integration boundaries.
 
 ## Security and trust boundary
